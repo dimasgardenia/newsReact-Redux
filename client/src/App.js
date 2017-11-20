@@ -20,9 +20,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <SidebarConnect />
-        <Route exact path='/' render={()=> <h1>HOME</h1>}/>
-        <Route path='/:title/:index' component={MainContent}
-        />
+        <Route path='/:title/:index' component={MainContent} />
       </div>
     </Provider>
     );

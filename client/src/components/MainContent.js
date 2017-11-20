@@ -8,7 +8,6 @@ import store from '../store'
 class MainContent extends Component {
   componentWillMount(){
     let params = this.props.match.params
-    // debugger
   }
   render () {
     let { index } = this.props.match.params
@@ -18,7 +17,15 @@ class MainContent extends Component {
         {
           articles == undefined ?
           "Loading" :
-          articles[index].title
+          <div>
+          <h2>{articles[index].title}</h2>
+          <div className='grid'>
+          <div className='col-sm-2'></div>
+          <img src={articles[index].urlToImage} alt='imagenews' className='img-responsive' width='40%' />
+          <br></br>
+          <p text-align='justify'> { articles[index].description } </p>
+          </div>
+          </div>
         }
     </div>
     )

@@ -9,9 +9,7 @@ import axios from 'axios'
 
 class Sidebar extends Component {
   componentWillMount () {
-    const url = 'https://newsapi.org/v2/top-headlines?' +
-          'sources=bbc-news&' +
-          'apiKey=e339ce0c756d41b4b750a34a5f778ccf'
+    const url = 'https://newsapi.org/v2/everything?domains=wsj.com&apiKey=e339ce0c756d41b4b750a34a5f778ccf'
     axios.get(url)
     .then(resp => {
       this.props.newsAction(resp.data)
@@ -20,7 +18,6 @@ class Sidebar extends Component {
       console.log(err)
     })
   }
-
 
     render () {
       {if (this.props.newslist.articles) {
@@ -33,8 +30,7 @@ class Sidebar extends Component {
                               <ul>
                                 {this.props.newslist.articles.map((data, i) => {
                                   return <Link to={`/${data.title.toLowerCase().replace(/\s/g, '-')}/${i}`}>
-                                  <li
-                                    // onClick={}
+                                  <li>
                                     key={data.title}>{data.title}
                                   </li>
                                   </Link>
@@ -44,8 +40,6 @@ class Sidebar extends Component {
                       </div>
                   </div>
           	</div>
-
-
         )
       } else {
         return (
