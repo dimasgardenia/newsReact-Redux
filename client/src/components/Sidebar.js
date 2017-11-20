@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import store from '../store/Index'
+import store from '../store/'
 import { newsAction }  from '../actions/NewsAct'
 import { connect } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
 import MainContent from './MainContent'
-
-//npm
 import axios from 'axios'
-
 
 
 class Sidebar extends Component {
@@ -24,10 +21,10 @@ class Sidebar extends Component {
     })
   }
 
+
     render () {
       {if (this.props.newslist.articles) {
         return (
-          <div>
             <div>
           		<h1>Your News Today</h1>
                   <div role="tabpanel">
@@ -35,9 +32,9 @@ class Sidebar extends Component {
                           <div className="nav nav-pills brand-pills nav-stacked" role="tablist">
                               <ul>
                                 {this.props.newslist.articles.map((data, i) => {
-                                  return <Link to={`/${data.title}/${i}`}>
+                                  return <Link to={`/${data.title.toLowerCase().replace(/\s/g, '-')}/${i}`}>
                                   <li
-                                    // onClick={this.forLink.bind(this,data)}
+                                    // onClick={}
                                     key={data.title}>{data.title}
                                   </li>
                                   </Link>
@@ -47,24 +44,16 @@ class Sidebar extends Component {
                       </div>
                   </div>
           	</div>
-            <Route exact path='/' render={()=> <h1>HOME</h1>}/>
-            <Route
-              path='/:title/:index'
-              render={({match})=>
-              <MainContent title={match.params.title} index={match.params.index}>{this.props.params}</MainContent>}>
-            </Route>
-            {/* {this.props.newslist.articles.map((data,i) => {
-              <Route path='/${data.title}/${i}' render= {() => <MainContent />}></Route>
-            })} */}
-          </div>
+
+
         )
       } else {
         return (
           <div>
-            <h1>Loading....</h1>
+            <h1>Loading...</h1>
           </div>
         )
-    }}
+      }}
   }
 
 }
